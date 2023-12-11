@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea id="insert"></textarea>
+    <button onclick="formate(document.getElementById('insert').value)">FORMAT</button>
+    <pre id="alert"></pre>
+    <script>
+        function formate (lyric) {
+            let splitlyric = lyric.split("\n");
+            let updated_line = "";
+            let alert_lyric = ""
+            let updated_lyric = "";
+            for (let line of splitlyric) {
+                let splitline = line.trim();
+                splitline = splitline.split(" ");
+                
+                switch (splitline[0]) {
+                    case "PRPW":
+                        updated_lyric = "[C]\n";
+                        continue;
+                    case " ":
+                    case "":
+                    case "1KPL":
+                    case "2KPL":
+                    case "BRGE":
+                        continue;
+                    default:
+                        for (let word of splitline) {
+                            if (word === splitline[splitline.length - 1]) updated_line = updated_line + word + "\n";
+                            else updated_line = `${updated_line} ${word}`;
+                        }
+                        alert_lyric = updated_lyric + updated_line + "\n";
+                }
+            }
+
+            document.getElementById("alert").innerHTML = alert_lyric
+        }
+    </script>
+</body>
+</html>

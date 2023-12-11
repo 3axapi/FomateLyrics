@@ -55,9 +55,9 @@
 <script>
     function formate (lyric) {
         const alert = document.getElementById("alert");
-        const V = document.getElementById("v").value;
-        const C = document.getElementById("c").value;
-        const B = document.getElementById("b").value;
+        const V = document.getElementById("v").value.toLowerCase();
+        const C = document.getElementById("c").value.toLowerCase();
+        const B = document.getElementById("b").value.toLowerCase();
         let formated_columns = lyric.split("\n");
         let formated_lyric = "";
         for (let line of formated_columns) {
@@ -65,15 +65,15 @@
             let formated_line = "";
             let index = 0;
             for (let word of words) {
-                switch (word) {
+                switch (word.toLowerCase()) {
                     case V:
-                        formated_line = "<br>Verse";
+                        formated_line = "<br>[V]";
                         break;
                     case C:
-                        formated_line = "<br>Chorus";
+                        formated_line = "<br>[C]";
                         break;
                     case B:
-                        formated_line = "<br>Bridge";
+                        formated_line = "<br>[B]";
                         break;
                     case "":
                     case " ":
