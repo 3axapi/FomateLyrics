@@ -54,22 +54,26 @@
 
 <script>
     function formate (lyric) {
-        const alert = document.getElementById("alert")
+        const alert = document.getElementById("alert");
+        const V = document.getElementById("v").value;
+        const C = document.getElementById("c").value;
+        const B = document.getElementById("b").value;
         let formated_columns = lyric.split("\n");
         let formated_lyric = "";
         for (let line of formated_columns) {
             let words = line.split(" ");
             let formated_line = "";
+            let index = 0;
             for (let word of words) {
                 switch (word) {
-                    case "V":
-                        formated_line = "Verse";
+                    case V:
+                        formated_line = "<br>Verse";
                         break;
-                    case "C":
-                        formated_line = "Chorus";
+                    case C:
+                        formated_line = "<br>Chorus";
                         break;
-                    case "B":
-                        formated_line = "Bridge";
+                    case B:
+                        formated_line = "<br>Bridge";
                         break;
                     case "":
                     case " ":
@@ -78,8 +82,10 @@
                         formated_line = `${formated_line} ${word}`;
                         break;
                 }
-                if (words[words.length - 1] === word) formated_lyric = `${formated_lyric}<br>${formated_line}`
+                if (words.length === index + 1) formated_lyric = `${formated_lyric}<br>${formated_line}`
+                index++;
             }
+            index = 0;
         }
         
         alert.innerHTML = formated_lyric;
